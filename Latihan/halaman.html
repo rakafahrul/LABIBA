@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow in the Dark Wonderland</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0a0a1a;
+            color: #e0e0ff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            scroll-behavior: smooth; /* Tambahkan smooth scrolling untuk seluruh halaman */
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(100, 150, 255, 0.2);
+            margin-bottom: 3rem;
+            position: sticky;
+            top: 0;
+            background-color: rgba(10, 10, 26, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(106, 17, 203, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: #b0b0ff;
+            text-decoration: none;
+            font-weight: 300;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: #6a11cb;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 5rem 0;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(106, 17, 203, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #b0b0ff;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 0 20px rgba(106, 17, 203, 0.5);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(106, 17, 203, 0.8);
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 5rem 0;
+        }
+        
+        .feature-card {
+            background: rgba(20, 20, 50, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 150, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(106, 17, 203, 0.3);
+            border: 1px solid rgba(100, 150, 255, 0.3);
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(106, 17, 203, 0.1) 0%, transparent 70%);
+            transform: rotate(30deg);
+            transition: all 0.5s ease;
+        }
+        
+        .feature-card:hover::before {
+            transform: rotate(60deg);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #e0e0ff;
+        }
+        
+        .feature-desc {
+            color: #b0b0ff;
+            line-height: 1.6;
+        }
+        
+        /* Game Section */
+        .game-section {
+            text-align: center;
+            padding: 3rem 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .game-container {
+            background: rgba(20, 20, 50, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 150, 255, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .game-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 2rem auto;
+            max-width: 400px;
+        }
+        
+        .card {
+            height: 80px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .card.flipped {
+            background: #0a0a1a;
+            transform: rotateY(180deg);
+        }
+        
+        .card.matched {
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            cursor: default;
+        }
+        
+        .game-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1rem;
+        }
+        
+        .game-btn {
+            margin-top: 1rem;
+        }
+        
+        /* Gallery Section */
+        .gallery-section {
+            padding: 3rem 0;
+            min-height: 100vh;
+        }
+        
+        .gallery-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(106, 17, 203, 0.3);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: 3rem 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .contact-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .social-card {
+            background: rgba(20, 20, 50, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 150, 255, 0.1);
+            width: 200px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(106, 17, 203, 0.3);
+            border: 1px solid rgba(100, 150, 255, 0.3);
+        }
+        
+        .social-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #6a11cb;
+        }
+        
+        .social-name {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #e0e0ff;
+        }
+        
+        .social-username {
+            color: #b0b0ff;
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 5rem;
+            border-top: 1px solid rgba(100, 150, 255, 0.2);
+            color: #b0b0ff;
+        }
+        
+        /* Glow elements */
+        .glow-circle {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            z-index: 1;
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            background: #6a11cb;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .circle-2 {
+            width: 400px;
+            height: 400px;
+            background: #2575fc;
+            bottom: 10%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+        
+        .circle-3 {
+            width: 200px;
+            height: 200px;
+            background: #00f2fe;
+            top: 50%;
+            left: 30%;
+            animation-delay: 4s;
+        }
+        
+        /* Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: fall linear infinite;
+        }
+        
+        /* Active section */
+        .active-section {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(106, 17, 203, 0.5);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(106, 17, 203, 0.8), 0 0 30px rgba(37, 117, 252, 0.6);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-50px) translateX(50px);
+            }
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) translateX(200px);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            .game-board {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 5px;
+            }
+            
+            .card {
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            overflow: auto;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 800px;
+            max-height: 80vh;
+            margin-top: 5vh;
+            animation: zoom 0.3s;
+        }
+
+        @keyframes zoom {
+            from {transform: scale(0.5); opacity: 0;}
+            to {transform: scale(1); opacity: 1;}
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #6a11cb;
+            transform: rotate(90deg);
+        }
+
+        .caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+            font-size: 1.2rem;
+        }
+
+        /* Efek hover untuk gallery item */
+        .gallery-item {
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    <div class="glow-circle circle-1"></div>
+    <div class="glow-circle circle-2"></div>
+    <div class="glow-circle circle-3"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">Reva Labiba</div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="nav-link" data-section="home">Home</a></li>
+                    <li><a href="#features" class="nav-link" data-section="features">Features</a></li>
+                    <li><a href="#gallery" class="nav-link" data-section="gallery">Gallery</a></li>
+                    <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <!-- Home Section -->
+        <section id="home" class="hero active-section">
+            <h1>Perkenalan Diri</h1>
+            <p class="subtitle">Reva Labiba adalah mahasiswa aktif fakultas MIPA Universitas Jember, program studi Matematika. Saat ini berusia 19 tahun</p>
+            <a href="#features" class="btn" id="explore-btn">Explore</a>
+        </section>
+        
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <h3 class="feature-title">Hobi</h3>
+                <p class="feature-desc">Ia senang mengisi waktu luang dengan <b>traveling</b> untuk menikmati suasana baru dan memperluas wawasan. Selain itu, <b>bermain game</b> menjadi cara favoritnya untuk melepas penat, <b>makan rujak</b> adalah hidangan pedas manis itu selalu berhasil jadi mood booster-nya, terutama setelah hari yang panjang</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🌌</div>
+                <h3 class="feature-title">Skill Khusus</h3>
+                <p class="feature-desc">Reva jago ngerjain soal limit, tapi limit sabarnya hilang kalau lagi lapar. Apalagi kalau udah ngantuk, kemampuan berhitungnya berubah jadi kemampuan ngitung berapa detik lagi bisa rebahan</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🌀</div>
+                <h3 class="feature-title">Sisi Lain reva</h3>
+                <p class="feature-desc">Nampak kalem, padahal hatinya sering bergejolak.... gara gara sinyal Wifi ilang pas submit tugas, Motto hidupnya: "<b>Belajar boleh, tapi rujak tetap prioritas</b>". oiyah dia punya kebiasaan ngomong <b>CAPEK "BETUL" LOH</b></p>
+            </div>
+        </section>
+        
+        <!-- Features Section (Game) -->
+         <!-- Features Section (Math Quiz) -->
+        <section id="features" class="game-section">
+            <div class="game-container">
+                <h2 class="game-title">Quiz Matematika</h2>
+                <p class="subtitle">Coba jawab soal matematika ini!</p>
+                
+                <div class="quiz-container">
+                    <p id="quiz-question">Klik tombol untuk mulai</p>
+                    <button class="btn game-btn" id="quiz-btn">Dapatkan Soal</button>
+                </div>
+            </div>
+        </section>
+        <!-- <section id="features" class="game-section">
+            <div class="game-container">
+                <h2 class="game-title">Game Anti Ribet</h2>
+                <p class="subtitle">Mainkan game memory sederhana ini untuk refreshing sejenak!</p>
+                
+                <div class="game-stats">
+                    <div>
+                        <h3>Moves: <span id="moves">0</span></h3>
+                    </div>
+                    <div>
+                        <h3>Pairs: <span id="pairs">0</span>/8</h3>
+                    </div>
+                </div>
+                
+                <div class="game-board" id="game-board"></div>
+                
+                <button class="btn game-btn" id="reset-btn">Reset Game</button>
+            </div>
+        </section> -->
+        
+        <!-- Gallery Section -->
+        <section id="gallery" class="gallery-section">
+             <!-- <section id="gallery" class="gallery-section"> -->
+            <h2 class="gallery-title">Gallery Reva</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="img/saya.jpg" alt="Reva 1" onclick="openModal(this)">
+                </div>
+                <div class="gallery-item">
+                    <img src="img/Gambar WhatsApp 2024-07-18 pukul 19.50.51_cf9541e3.jpg" alt="Reva traveling" onclick="openModal(this)">
+                </div>
+                <div class="gallery-item">
+                    <img src="img/Gambar WhatsApp 2024-09-15 pukul 20.42.06_79c98113.jpg" alt="Reva di kampus" onclick="openModal(this)">
+                </div>
+                <div class="gallery-item">
+                    <img src="img/WIN_20250313_09_15_01_Pro.jpg" alt="Reva makan rujak" onclick="openModal(this)">
+                </div>
+                <div class="gallery-item">
+                    <img src="img/WIN_20250313_09_15_11_Pro.jpg" alt="Reva main game" onclick="openModal(this)">
+                </div>
+                <div class="gallery-item">
+                    <img src="img/WIN_20250313_09_21_52_Pro.jpg" alt="Reva belajar matematika" onclick="openModal(this)">
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <h2 class="contact-title">Contact Reva</h2>
+            <p class="subtitle" style="text-align: center;">Hubungi Reva melalui media sosial berikut</p>
+            
+            <div class="social-links">
+                <div class="social-card">
+                    <div class="social-icon">📱</div>
+                    <h3 class="social-name">WhatsApp</h3>
+                    <p class="social-username">+62 812-3456-7890</p>
+                </div>
+                <div class="social-card">
+                    <div class="social-icon">📷</div>
+                    <h3 class="social-name">Instagram</h3>
+                    <p class="social-username">@revalabiba</p>
+                </div>
+                <div class="social-card">
+                    <div class="social-icon">📧</div>
+                    <h3 class="social-name">Email</h3>
+                    <p class="social-username">reva@university.ac.id</p>
+                </div>
+                <div class="social-card">
+                    <div class="social-icon">🎮</div>
+                    <h3 class="social-name">Game ID</h3>
+                    <p class="social-username">RevaTheMathematician</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption" class="caption"></div>
+    </div>
+    
+    <footer>
+        <p>© 2025 Reva Labiba. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        // Fungsi untuk modal gallery
+        function openModal(img) {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("modalImage");
+            const captionText = document.getElementById("caption");
+            
+            modal.style.display = "block";
+            modalImg.src = img.src;
+            captionText.innerHTML = img.alt;
+            
+            // Tambahkan event untuk close dengan ESC
+            document.addEventListener('keydown', function(event) {
+                if (event.key === "Escape") {
+                    closeModal();
+                }
+            });
+        }
+
+        function closeModal() {
+            document.getElementById("imageModal").style.display = "none";
+            
+            // Hapus event listener ESC
+            document.removeEventListener('keydown', function(event) {
+                if (event.key === "Escape") {
+                    closeModal();
+                }
+            });
+        }
+
+        // Tutup modal jika klik di luar gambar
+        window.onclick = function(event) {
+            const modal = document.getElementById("imageModal");
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Quiz Matematika
+        const quizBtn = document.getElementById('quiz-btn');
+        const quizQuestion = document.getElementById('quiz-question');
+
+        // Daftar soal dan jawaban
+        const questions = [
+            {
+                question: "Berapakah hasil dari limit x mendekati 0 dari sin(x)/x?",
+                answer: "1"
+            },
+            {
+                question: "Jika f(x) = x^2 + 3x + 2, berapakah f'(x)?",
+                answer: "2x + 3"
+            },
+            {
+                question: "Berapakah integral dari x^3 dx?",
+                answer: "x^4/4 + C"
+            },
+            // Tambahkan lebih banyak soal sesuai kebutuhan
+        ];
+
+        // Fungsi untuk mendapatkan soal acak
+        function getRandomQuestion() {
+            const randomIndex = Math.floor(Math.random() * questions.length);
+            return questions[randomIndex];
+        }
+
+        // Event listener untuk tombol "Dapatkan Soal"
+        quizBtn.addEventListener('click', function() {
+            const question = getRandomQuestion();
+            quizQuestion.textContent = question.question;
+
+            // Tunggu jawaban pengguna
+            const userAnswer = prompt("Masukkan jawaban Anda:");
+            if (userAnswer.trim().toLowerCase() === question.answer.toLowerCase()) {
+                alert("Selamat! Jawaban Anda benar!");
+            } else {
+                alert("Jawaban salah. Jawaban yang benar adalah: " + question.answer);
+            }
+        });
+
+
+
+
+        // Create particles
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 100;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Random properties
+            const size = Math.random() * 3 + 1;
+            const posX = Math.random() * window.innerWidth;
+            const duration = Math.random() * 10 + 5;
+            const delay = Math.random() * 10;
+            
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${posX}px`;
+            particle.style.animationDuration = `${duration}s`;
+            particle.style.animationDelay = `${delay}s`;
+            
+            // Random glow color
+            const colors = ['#6a11cb', '#2575fc', '#00f2fe', '#ffffff'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            particle.style.backgroundColor = color;
+            particle.style.boxShadow = `0 0 ${size * 2}px ${size}px ${color}`;
+            
+            particlesContainer.appendChild(particle);
+        }
+        
+        // Add cursor glow effect
+        document.addEventListener('mousemove', (e) => {
+            const cursorGlow = document.createElement('div');
+            cursorGlow.classList.add('cursor-glow');
+            cursorGlow.style.position = 'fixed';
+            cursorGlow.style.width = '20px';
+            cursorGlow.style.height = '20px';
+            cursorGlow.style.borderRadius = '50%';
+            cursorGlow.style.background = 'radial-gradient(circle, rgba(106, 17, 203, 0.8) 0%, transparent 70%)';
+            cursorGlow.style.pointerEvents = 'none';
+            cursorGlow.style.transform = 'translate(-50%, -50%)';
+            cursorGlow.style.left = `${e.clientX}px`;
+            cursorGlow.style.top = `${e.clientY}px`;
+            cursorGlow.style.zIndex = '9999';
+            
+            document.body.appendChild(cursorGlow);
+            
+            // Fade out and remove
+            setTimeout(() => {
+                cursorGlow.style.transition = 'opacity 0.5s ease';
+                cursorGlow.style.opacity = '0';
+                setTimeout(() => {
+                    cursorGlow.remove();
+                }, 500);
+            }, 100);
+        });
+        
+        // Navigation between sections
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    // Smooth scroll to section
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active nav link
+                    navLinks.forEach(navLink => {
+                        navLink.style.color = '#b0b0ff';
+                    });
+                    this.style.color = '#6a11cb';
+                }
+            });
+        });
+        
+        // Memory Game Logic
+        const gameBoard = document.getElementById('game-board');
+        const movesDisplay = document.getElementById('moves');
+        const pairsDisplay = document.getElementById('pairs');
+        const resetBtn = document.getElementById('reset-btn');
+        
+        const emojis = ['😀', '😎', '🤩', '😍', '🤪', '🧐', '😴', '🥳'];
+        let cards = [...emojis, ...emojis];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let moves = 0;
+        let canFlip = true;
+        
+        function shuffleCards() {
+            for (let i = cards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [cards[i], cards[j]] = [cards[j], cards[i]];
+            }
+        }
+        
+        function createBoard() {
+            gameBoard.innerHTML = '';
+            shuffleCards();
+            
+            cards.forEach((emoji, index) => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.dataset.index = index;
+                card.dataset.emoji = emoji;
+                card.textContent = emoji;
+                card.addEventListener('click', flipCard);
+                gameBoard.appendChild(card);
+            });
+        }
+        
+        function flipCard() {
+            if (!canFlip || this.classList.contains('flipped') || this.classList.contains('matched')) {
+                return;
+            }
+            
+            this.classList.add('flipped');
+            flippedCards.push(this);
+            
+            if (flippedCards.length === 2) {
+                canFlip = false;
+                moves++;
+                movesDisplay.textContent = moves;
+                
+                if (flippedCards[0].dataset.emoji === flippedCards[1].dataset.emoji) {
+                    flippedCards.forEach(card => {
+                        card.classList.add('matched');
+                    });
+                    matchedPairs++;
+                    pairsDisplay.textContent = matchedPairs;
+                    
+                    if (matchedPairs === 8) {
+                        setTimeout(() => {
+                            alert(`Selamat! Anda menang dengan ${moves} langkah!`);
+                        }, 500);
+                    }
+                    
+                    flippedCards = [];
+                    canFlip = true;
+                } else {
+                    setTimeout(() => {
+                        flippedCards.forEach(card => {
+                            card.classList.remove('flipped');
+                        });
+                        flippedCards = [];
+                        canFlip = true;
+                    }, 1000);
+                }
+            }
+        }
+        
+        function resetGame() {
+            flippedCards = [];
+            matchedPairs = 0;
+            moves = 0;
+            movesDisplay.textContent = '0';
+            pairsDisplay.textContent = '0';
+            canFlip = true;
+            createBoard();
+        }
+        
+        resetBtn.addEventListener('click', resetGame);
+        
+        // Initialize game
+        createBoard();
+        
+        // Explore button scrolls to features section
+        document.getElementById('explore-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const featuresSection = document.getElementById('features');
+            featuresSection.scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+        
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
