@@ -648,6 +648,73 @@
                 right: 20px;
             }
         }
+                .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .gallery-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            aspect-ratio: 1/1;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .add-photo-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f5f5f5;
+            border: 2px dashed #ccc;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .add-photo-btn:hover {
+            background-color: #e9e9e9;
+            border-color: #999;
+        }
+        
+        .add-photo-icon {
+            font-size: 48px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .add-photo-text {
+            color: #666;
+            font-weight: bold;
+        }
+        
+        #file-input {
+            display: none;
+        }
+
     </style>
 </head>
 <body>
@@ -731,6 +798,12 @@
                 <div class="gallery-item">
                     <img src="img/WIN_20250313_09_21_52_Pro.jpg" alt="Reva belajar matematika" onclick="openModal(this)">
                 </div>
+                <!-- Tombol tambah foto -->
+                <div class="gallery-item add-photo-btn" onclick="document.getElementById('file-input').click()">
+                    <div class="add-photo-icon">+</div>
+                    <div class="add-photo-text">Tambah Foto</div>
+                </div>
+                <input type="file" id="file-input" accept="image/*" multiple onchange="handleFileSelect(event)">
             </div>
         </section>
         
@@ -742,25 +815,34 @@
             <div class="social-links">
                 <div class="social-card">
                     <div class="social-icon">📱</div>
-                    <h3 class="social-name">WhatsApp</h3>
-                    <p class="social-username">+62 812-3456-7890</p>
+                    <!-- <h3 class="social-name">WhatsApp</h3> -->
+                    <a class="social-btn instagram" href="https://wa.me/6281230641065" target="_blank" style="color: white;"><h3>WhatsApp</h3>
+                    </a>
+                    <p class="social-username">+62 812-3064-1065</p>
                 </div>
                 <div class="social-card">
                     <div class="social-icon">📷</div>
-                    <h3 class="social-name">Instagram</h3>
-                    <p class="social-username">@revalabiba</p>
+                    <!-- <h3 class="social-name">Instagram</h3> -->
+                    <a class="social-btn instagram" href="https://www.instagram.com/labibareva" target="_blank" style="color: white;"><h3>Instagram</h3>
+                    </a>
+                    <p class="social-username">@labibareva</p>
                 </div>
                 <div class="social-card">
                     <div class="social-icon">📧</div>
                     <h3 class="social-name">Email</h3>
+                    <!-- <a class="social-btn instagram" href="https://www.instagram.com/labibareva" target="_blank" style="color: white;"><h3>Instagram</h3>
+                    </a> -->
                     <p class="social-username">reva@university.ac.id</p>
                 </div>
                 <div class="social-card">
                     <div class="social-icon">🎮</div>
-                    <h3 class="social-name">Game ID</h3>
+                    <!-- <h3 class="social-name">Game ID</h3> -->
+                    <a class="social-btn instagram" href="https://www.crazygames.co.id/game/samurai-s-shadow-qtn" target="_blank" style="color: white;"><h3>Game ID</h3>
+                    </a>
                     <p class="social-username">RevaTheMathematician</p>
                 </div>
             </div>
+
         </section>
     </div>
     
@@ -779,6 +861,39 @@
     <button class="theme-toggle" id="themeToggle">🌙</button>
     
     <script>
+        // Fungsi untuk menangani pemilihan file
+        function handleFileSelect(event) {
+            const files = event.target.files;
+            
+            if (files.length > 0) {
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    
+                    if (file.type.match('image.*')) {
+                        const reader = new FileReader();
+                        
+                        reader.onload = function(e) {
+                            // Membuat elemen gallery item baru
+                            const galleryGrid = document.querySelector('.gallery-grid');
+                            const newGalleryItem = document.createElement('div');
+                            newGalleryItem.className = 'gallery-item';
+                            
+                            const newImage = document.createElement('img');
+                            newImage.src = e.target.result;
+                            newImage.alt = 'Foto baru';
+                            
+                            newGalleryItem.appendChild(newImage);
+                            
+                            // Menyisipkan sebelum tombol tambah foto
+                            const addButton = document.querySelector('.add-photo-btn');
+                            galleryGrid.insertBefore(newGalleryItem, addButton);
+                        }
+                        
+                        reader.readAsDataURL(file);
+                    }
+                }
+            }
+        }
         // Theme Toggle Functionality
         const themeToggle = document.getElementById('themeToggle');
         const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
