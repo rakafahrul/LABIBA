@@ -881,6 +881,12 @@
                             const newImage = document.createElement('img');
                             newImage.src = e.target.result;
                             newImage.alt = 'Foto baru';
+
+                            // Membuat tombol hapus
+                            const deleteBtn = document.createElement('button');
+                            deleteBtn.className = 'delete-btn';
+                            deleteBtn.innerHTML = '×';
+                            deleteBtn.onclick = function() { deletePhoto(this); };
                             
                             newGalleryItem.appendChild(newImage);
                             
@@ -890,6 +896,19 @@
                         }
                         
                         reader.readAsDataURL(file);
+                    }
+                }
+                 // Fungsi untuk menghapus foto
+                function deletePhoto(button) {
+                    if (confirm('Apakah Anda yakin ingin menghapus foto ini?')) {
+                        const galleryItem = button.parentElement;
+                        galleryItem.style.transform = 'scale(0)';
+                        galleryItem.style.opacity = '0';
+                        
+                        // Hapus elemen setelah animasi selesai
+                        setTimeout(() => {
+                            galleryItem.remove();
+                        }, 300);
                     }
                 }
             }
