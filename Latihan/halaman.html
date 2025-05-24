@@ -7,19 +7,46 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
         
+        :root {
+            --bg-color: #0a0a1a;
+            --text-color: #e0e0ff;
+            --secondary-text: #b0b0ff;
+            --primary-gradient: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            --card-bg: rgba(20, 20, 50, 0.3);
+            --card-border: rgba(100, 150, 255, 0.1);
+            --glow-color: rgba(106, 17, 203, 0.5);
+            --header-bg: rgba(10, 10, 26, 0.9);
+            --footer-border: rgba(100, 150, 255, 0.2);
+            --modal-bg: rgba(0, 0, 0, 0.9);
+        }
+        
+        [data-theme="light"] {
+            --bg-color: #f5f5ff;
+            --text-color: #33334d;
+            --secondary-text: #555577;
+            --primary-gradient: linear-gradient(90deg, #2575fc 0%, #6a11cb 100%);
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --card-border: rgba(100, 150, 255, 0.3);
+            --glow-color: rgba(37, 117, 252, 0.5);
+            --header-bg: rgba(245, 245, 255, 0.9);
+            --footer-border: rgba(100, 150, 255, 0.3);
+            --modal-bg: rgba(255, 255, 255, 0.95);
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
         
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #0a0a1a;
-            color: #e0e0ff;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             overflow-x: hidden;
             min-height: 100vh;
-            scroll-behavior: smooth; /* Tambahkan smooth scrolling untuk seluruh halaman */
+            scroll-behavior: smooth;
         }
         
         .container {
@@ -35,11 +62,11 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 0;
-            border-bottom: 1px solid rgba(100, 150, 255, 0.2);
+            border-bottom: 1px solid var(--footer-border);
             margin-bottom: 3rem;
             position: sticky;
             top: 0;
-            background-color: rgba(10, 10, 26, 0.9);
+            background-color: var(--header-bg);
             backdrop-filter: blur(10px);
             z-index: 100;
         }
@@ -47,11 +74,11 @@
         .logo {
             font-size: 2rem;
             font-weight: 700;
-            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            background: var(--primary-gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 0 10px rgba(106, 17, 203, 0.3);
+            text-shadow: 0 0 10px var(--glow-color);
             animation: glow 2s ease-in-out infinite alternate;
         }
         
@@ -62,7 +89,7 @@
         }
         
         nav a {
-            color: #b0b0ff;
+            color: var(--secondary-text);
             text-decoration: none;
             font-weight: 300;
             position: relative;
@@ -80,7 +107,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            background: var(--primary-gradient);
             transition: width 0.3s ease;
         }
         
@@ -97,18 +124,18 @@
         h1 {
             font-size: 4rem;
             margin-bottom: 1.5rem;
-            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            background: var(--primary-gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 0 20px rgba(106, 17, 203, 0.5);
+            text-shadow: 0 0 20px var(--glow-color);
             animation: glow 2s ease-in-out infinite alternate;
         }
         
         .subtitle {
             font-size: 1.5rem;
             margin-bottom: 2rem;
-            color: #b0b0ff;
+            color: var(--secondary-text);
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
@@ -117,12 +144,12 @@
         .btn {
             display: inline-block;
             padding: 0.8rem 2rem;
-            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            background: var(--primary-gradient);
             color: white;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            box-shadow: 0 0 20px rgba(106, 17, 203, 0.5);
+            box-shadow: 0 0 20px var(--glow-color);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -131,7 +158,7 @@
         
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 0 30px rgba(106, 17, 203, 0.8);
+            box-shadow: 0 0 30px var(--glow-color);
         }
         
         .btn::before {
@@ -158,11 +185,11 @@
         }
         
         .feature-card {
-            background: rgba(20, 20, 50, 0.3);
+            background: var(--card-bg);
             border-radius: 15px;
             padding: 2rem;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(100, 150, 255, 0.1);
+            border: 1px solid var(--card-border);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -170,8 +197,8 @@
         
         .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(106, 17, 203, 0.3);
-            border: 1px solid rgba(100, 150, 255, 0.3);
+            box-shadow: 0 10px 30px var(--glow-color);
+            border: 1px solid var(--card-border);
         }
         
         .feature-card::before {
@@ -193,7 +220,7 @@
         .feature-icon {
             font-size: 3rem;
             margin-bottom: 1.5rem;
-            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            background: var(--primary-gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -202,11 +229,11 @@
         .feature-title {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: #e0e0ff;
+            color: var(--text-color);
         }
         
         .feature-desc {
-            color: #b0b0ff;
+            color: var(--secondary-text);
             line-height: 1.6;
         }
         
@@ -221,11 +248,11 @@
         }
         
         .game-container {
-            background: rgba(20, 20, 50, 0.3);
+            background: var(--card-bg);
             border-radius: 15px;
             padding: 2rem;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(100, 150, 255, 0.1);
+            border: 1px solid var(--card-border);
             max-width: 600px;
             margin: 0 auto;
         }
@@ -233,7 +260,7 @@
         .game-title {
             font-size: 2rem;
             margin-bottom: 1.5rem;
-            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            background: var(--primary-gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -249,7 +276,7 @@
         
         .card {
             height: 80px;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            background: var(--primary-gradient);
             border-radius: 8px;
             display: flex;
             justify-content: center;
@@ -261,7 +288,7 @@
         }
         
         .card.flipped {
-            background: #0a0a1a;
+            background: var(--bg-color);
             transform: rotateY(180deg);
         }
         
@@ -290,7 +317,7 @@
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 2rem;
-            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            background: var(--primary-gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -308,6 +335,7 @@
             position: relative;
             height: 250px;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
         
         .gallery-item img {
@@ -319,7 +347,7 @@
         
         .gallery-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(106, 17, 203, 0.3);
+            box-shadow: 0 10px 20px var(--glow-color);
         }
         
         .gallery-item:hover img {
@@ -339,7 +367,7 @@
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 2rem;
-            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            background: var(--primary-gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -354,11 +382,11 @@
         }
         
         .social-card {
-            background: rgba(20, 20, 50, 0.3);
+            background: var(--card-bg);
             border-radius: 15px;
             padding: 1.5rem;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(100, 150, 255, 0.1);
+            border: 1px solid var(--card-border);
             width: 200px;
             text-align: center;
             transition: all 0.3s ease;
@@ -366,8 +394,8 @@
         
         .social-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(106, 17, 203, 0.3);
-            border: 1px solid rgba(100, 150, 255, 0.3);
+            box-shadow: 0 10px 20px var(--glow-color);
+            border: 1px solid var(--card-border);
         }
         
         .social-icon {
@@ -379,11 +407,11 @@
         .social-name {
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
-            color: #e0e0ff;
+            color: var(--text-color);
         }
         
         .social-username {
-            color: #b0b0ff;
+            color: var(--secondary-text);
             font-size: 0.9rem;
         }
         
@@ -391,8 +419,8 @@
             text-align: center;
             padding: 2rem 0;
             margin-top: 5rem;
-            border-top: 1px solid rgba(100, 150, 255, 0.2);
-            color: #b0b0ff;
+            border-top: 1px solid var(--footer-border);
+            color: var(--secondary-text);
         }
         
         /* Glow elements */
@@ -458,12 +486,92 @@
             animation: fadeIn 0.5s ease;
         }
         
+        /* Modal for gallery */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--modal-bg);
+            z-index: 1000;
+            overflow: auto;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 800px;
+            max-height: 80vh;
+            margin-top: 5vh;
+            animation: zoom 0.3s;
+        }
+
+        @keyframes zoom {
+            from {transform: scale(0.5); opacity: 0;}
+            to {transform: scale(1); opacity: 1;}
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: var(--text-color);
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #6a11cb;
+            transform: rotate(90deg);
+        }
+
+        .caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+            color: var(--secondary-text);
+            padding: 10px 0;
+            font-size: 1.2rem;
+        }
+        
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 0 20px var(--glow-color);
+            z-index: 1000;
+            border: none;
+            outline: none;
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+        
         @keyframes glow {
             from {
-                text-shadow: 0 0 10px rgba(106, 17, 203, 0.5);
+                text-shadow: 0 0 10px var(--glow-color);
             }
             to {
-                text-shadow: 0 0 20px rgba(106, 17, 203, 0.8), 0 0 30px rgba(37, 117, 252, 0.6);
+                text-shadow: 0 0 20px var(--glow-color), 0 0 30px rgba(37, 117, 252, 0.6);
             }
         }
         
@@ -527,69 +635,18 @@
                 height: 60px;
                 font-size: 1.5rem;
             }
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            overflow: auto;
-        }
-
-        .modal-content {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 800px;
-            max-height: 80vh;
-            margin-top: 5vh;
-            animation: zoom 0.3s;
-        }
-
-        @keyframes zoom {
-            from {transform: scale(0.5); opacity: 0;}
-            to {transform: scale(1); opacity: 1;}
-        }
-
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-        .close:hover {
-            color: #6a11cb;
-            transform: rotate(90deg);
-        }
-
-        .caption {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 800px;
-            text-align: center;
-            color: #ccc;
-            padding: 10px 0;
-            font-size: 1.2rem;
-        }
-
-        /* Efek hover untuk gallery item */
-        .gallery-item {
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.03);
+            
+            .modal-content {
+                width: 95%;
+            }
+            
+            .theme-toggle {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                bottom: 20px;
+                right: 20px;
+            }
         }
     </style>
 </head>
@@ -639,8 +696,7 @@
             </div>
         </section>
         
-        <!-- Features Section (Game) -->
-         <!-- Features Section (Math Quiz) -->
+        <!-- Features Section (Math Quiz) -->
         <section id="features" class="game-section">
             <div class="game-container">
                 <h2 class="game-title">Quiz Matematika</h2>
@@ -652,29 +708,9 @@
                 </div>
             </div>
         </section>
-        <!-- <section id="features" class="game-section">
-            <div class="game-container">
-                <h2 class="game-title">Game Anti Ribet</h2>
-                <p class="subtitle">Mainkan game memory sederhana ini untuk refreshing sejenak!</p>
-                
-                <div class="game-stats">
-                    <div>
-                        <h3>Moves: <span id="moves">0</span></h3>
-                    </div>
-                    <div>
-                        <h3>Pairs: <span id="pairs">0</span>/8</h3>
-                    </div>
-                </div>
-                
-                <div class="game-board" id="game-board"></div>
-                
-                <button class="btn game-btn" id="reset-btn">Reset Game</button>
-            </div>
-        </section> -->
         
         <!-- Gallery Section -->
         <section id="gallery" class="gallery-section">
-             <!-- <section id="gallery" class="gallery-section"> -->
             <h2 class="gallery-title">Gallery Reva</h2>
             <div class="gallery-grid">
                 <div class="gallery-item">
@@ -727,6 +763,8 @@
             </div>
         </section>
     </div>
+    
+    <!-- Modal for fullscreen images -->
     <div id="myModal" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
         <img class="modal-content" id="img01">
@@ -737,11 +775,49 @@
         <p>© 2025 Reva Labiba. All rights reserved.</p>
     </footer>
     
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle">🌙</button>
+    
     <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Check for saved theme or prefered scheme
+        const currentTheme = localStorage.getItem('theme') || 
+                            (prefersDarkScheme.matches ? 'dark' : 'light');
+        document.body.setAttribute('data-theme', currentTheme);
+        updateToggleIcon(currentTheme);
+        
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', toggleTheme);
+        
+        // Update the toggle icon based on theme
+        function updateToggleIcon(theme) {
+            themeToggle.textContent = theme === 'dark' ? '🌙' : '☀️';
+        }
+        
+        // Toggle theme function
+        function toggleTheme() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateToggleIcon(newTheme);
+        }
+        
+        // Listen for system theme changes
+        prefersDarkScheme.addEventListener('change', e => {
+            const newScheme = e.matches ? 'dark' : 'light';
+            document.body.setAttribute('data-theme', newScheme);
+            localStorage.setItem('theme', newScheme);
+            updateToggleIcon(newScheme);
+        });
+
         // Fungsi untuk modal gallery
         function openModal(img) {
-            const modal = document.getElementById("imageModal");
-            const modalImg = document.getElementById("modalImage");
+            const modal = document.getElementById("myModal");
+            const modalImg = document.getElementById("img01");
             const captionText = document.getElementById("caption");
             
             modal.style.display = "block";
@@ -757,7 +833,7 @@
         }
 
         function closeModal() {
-            document.getElementById("imageModal").style.display = "none";
+            document.getElementById("myModal").style.display = "none";
             
             // Hapus event listener ESC
             document.removeEventListener('keydown', function(event) {
@@ -769,7 +845,7 @@
 
         // Tutup modal jika klik di luar gambar
         window.onclick = function(event) {
-            const modal = document.getElementById("imageModal");
+            const modal = document.getElementById("myModal");
             if (event.target == modal) {
                 closeModal();
             }
@@ -793,7 +869,14 @@
                 question: "Berapakah integral dari x^3 dx?",
                 answer: "x^4/4 + C"
             },
-            // Tambahkan lebih banyak soal sesuai kebutuhan
+            {
+                question: "Berapakah hasil dari 2^5?",
+                answer: "32"
+            },
+            {
+                question: "Akar kuadrat dari 144 adalah?",
+                answer: "12"
+            }
         ];
 
         // Fungsi untuk mendapatkan soal acak
@@ -809,15 +892,12 @@
 
             // Tunggu jawaban pengguna
             const userAnswer = prompt("Masukkan jawaban Anda:");
-            if (userAnswer.trim().toLowerCase() === question.answer.toLowerCase()) {
+            if (userAnswer && userAnswer.trim().toLowerCase() === question.answer.toLowerCase()) {
                 alert("Selamat! Jawaban Anda benar!");
             } else {
                 alert("Jawaban salah. Jawaban yang benar adalah: " + question.answer);
             }
         });
-
-
-
 
         // Create particles
         const particlesContainer = document.getElementById('particles');
@@ -892,102 +972,12 @@
                     
                     // Update active nav link
                     navLinks.forEach(navLink => {
-                        navLink.style.color = '#b0b0ff';
+                        navLink.style.color = 'var(--secondary-text)';
                     });
                     this.style.color = '#6a11cb';
                 }
             });
         });
-        
-        // Memory Game Logic
-        const gameBoard = document.getElementById('game-board');
-        const movesDisplay = document.getElementById('moves');
-        const pairsDisplay = document.getElementById('pairs');
-        const resetBtn = document.getElementById('reset-btn');
-        
-        const emojis = ['😀', '😎', '🤩', '😍', '🤪', '🧐', '😴', '🥳'];
-        let cards = [...emojis, ...emojis];
-        let flippedCards = [];
-        let matchedPairs = 0;
-        let moves = 0;
-        let canFlip = true;
-        
-        function shuffleCards() {
-            for (let i = cards.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [cards[i], cards[j]] = [cards[j], cards[i]];
-            }
-        }
-        
-        function createBoard() {
-            gameBoard.innerHTML = '';
-            shuffleCards();
-            
-            cards.forEach((emoji, index) => {
-                const card = document.createElement('div');
-                card.classList.add('card');
-                card.dataset.index = index;
-                card.dataset.emoji = emoji;
-                card.textContent = emoji;
-                card.addEventListener('click', flipCard);
-                gameBoard.appendChild(card);
-            });
-        }
-        
-        function flipCard() {
-            if (!canFlip || this.classList.contains('flipped') || this.classList.contains('matched')) {
-                return;
-            }
-            
-            this.classList.add('flipped');
-            flippedCards.push(this);
-            
-            if (flippedCards.length === 2) {
-                canFlip = false;
-                moves++;
-                movesDisplay.textContent = moves;
-                
-                if (flippedCards[0].dataset.emoji === flippedCards[1].dataset.emoji) {
-                    flippedCards.forEach(card => {
-                        card.classList.add('matched');
-                    });
-                    matchedPairs++;
-                    pairsDisplay.textContent = matchedPairs;
-                    
-                    if (matchedPairs === 8) {
-                        setTimeout(() => {
-                            alert(`Selamat! Anda menang dengan ${moves} langkah!`);
-                        }, 500);
-                    }
-                    
-                    flippedCards = [];
-                    canFlip = true;
-                } else {
-                    setTimeout(() => {
-                        flippedCards.forEach(card => {
-                            card.classList.remove('flipped');
-                        });
-                        flippedCards = [];
-                        canFlip = true;
-                    }, 1000);
-                }
-            }
-        }
-        
-        function resetGame() {
-            flippedCards = [];
-            matchedPairs = 0;
-            moves = 0;
-            movesDisplay.textContent = '0';
-            pairsDisplay.textContent = '0';
-            canFlip = true;
-            createBoard();
-        }
-        
-        resetBtn.addEventListener('click', resetGame);
-        
-        // Initialize game
-        createBoard();
         
         // Explore button scrolls to features section
         document.getElementById('explore-btn').addEventListener('click', function(e) {
